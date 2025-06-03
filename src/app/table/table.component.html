@@ -1,18 +1,47 @@
-<table border="1">
-  <thead>
-    <tr>
-      <th>Nation</th>
-      <th>Year</th>
-      <th>Population</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of data">
-      <td>{{ item.Nation }}</td>
-      <td>{{ item.Year }}</td>
-      <td>{{ item.Population }}</td>
-    </tr>
-  </tbody>
-</table>
-<button mat-button (click)="exportToCSV()">Export to CSV</button>
-<button mat-button (click)="exportToExcel()">Export to Excel</button>
+<div class="container mat-elevation-z8">
+  <!-- Botón para exportar a Excel -->
+  <div style="margin: 16px 0;">
+    <button mat-raised-button color="primary" (click)="exportToExcel()">Exportar a Excel</button>
+  </div>
+
+  <!-- Tabla con la data usando Angular Material -->
+  <table mat-table [dataSource]="dataSource" class="full-width-table">
+    <!-- Columna: WORKING_PRESSURE_PSI -->
+    <ng-container matColumnDef="WORKING_PRESSURE_PSI">
+      <th mat-header-cell *matHeaderCellDef> PSI </th>
+      <td mat-cell *matCellDef="let element"> {{ element.WORKING_PRESSURE_PSI }} </td>
+    </ng-container>
+
+    <!-- Columna: WORKING_PRESSURE_BAR -->
+    <ng-container matColumnDef="WORKING_PRESSURE_BAR">
+      <th mat-header-cell *matHeaderCellDef> BAR </th>
+      <td mat-cell *matCellDef="let element"> {{ element.WORKING_PRESSURE_BAR }} </td>
+    </ng-container>
+
+    <!-- Columna: MOTOR_POWER_HP -->
+    <ng-container matColumnDef="MOTOR_POWER_HP">
+      <th mat-header-cell *matHeaderCellDef> HP </th>
+      <td mat-cell *matCellDef="let element"> {{ element.MOTOR_POWER_HP }} </td>
+    </ng-container>
+
+    <!-- Columna: MOTOR_POWER_KW -->
+    <ng-container matColumnDef="MOTOR_POWER_KW">
+      <th mat-header-cell *matHeaderCellDef> KW </th>
+      <td mat-cell *matCellDef="let element"> {{ element.MOTOR_POWER_KW }} </td>
+    </ng-container>
+
+    <!-- Columna: VOLTAGE -->
+    <ng-container matColumnDef="VOLTAGE">
+      <th mat-header-cell *matHeaderCellDef> Voltage </th>
+      <td mat-cell *matCellDef="let element"> {{ element.VOLTAGE }} </td>
+    </ng-container>
+
+    <!-- Fila del encabezado -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <!-- Filas de datos -->
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <!-- Paginador -->
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

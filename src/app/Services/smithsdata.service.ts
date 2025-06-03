@@ -1,3 +1,4 @@
+// src/app/Services/smithsdata.service.ts
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -7,7 +8,8 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class SmithsdataService {
-  private apiUrl = 'https://datausa.io/api/data?drilldowns=Nation&measures=Population';
+  // URL de la API REST
+  private apiUrl = 'https://localhost:44374/api/Compressor';
 
   constructor(private httpClient: HttpClient) { }
 
